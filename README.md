@@ -8,15 +8,11 @@
 
 `cd {app-name}`
 
-#### 3. Install postcss and autoprefixer
-
-`npm i -D tailwindcss postcss-cli autoprefixer`
-
-#### 4. Install tailwind
+#### 3. Install tailwind
 
 `npm install -D tailwindcss@npm:@tailwindcss/postcss7-compat @tailwindcss/postcss7-compat postcss@^7 autoprefixer@^9 `
 
-#### 5. Install and configure CRACO
+#### 4. Install and configure CRACO
 
 `npm install @craco/craco`
 
@@ -31,7 +27,7 @@ Once it is installed, change "scripts" in your "package.json".
     },
 ```
 
-#### 6. Create craco config file
+#### 5. Create craco config file
 
 `touch craco.config.js`
 
@@ -50,7 +46,7 @@ module.exports = {
 }
 ```
 
-#### 7. Create tailwind config file
+#### 6. Create tailwind config file
 
 `npx tailwindcss init`
 
@@ -87,7 +83,7 @@ If you want to remove unused styles, you can change it like this.
   }
 ```
 
-#### 8. Modifiy index.css
+#### 7. Modifiy index.css
 
 In this file, write like this.
 
@@ -99,7 +95,7 @@ In this file, write like this.
 
 Make sure "index.css" file is imported in "index.js".
 
-#### 9. Run React app
+#### 8. Run React app
 
 `npm start`
 
