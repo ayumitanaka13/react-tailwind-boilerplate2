@@ -1,70 +1,108 @@
-# Getting Started with Create React App
+# Getting Started with Create React App with TailwindCSS
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+#### 1. Create React App with npm
 
-## Available Scripts
+`create-react-app {app-name} --use-npm`
 
-In the project directory, you can run:
+#### 2. Move to App directory
 
-### `npm start`
+`cd {app-name}`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+#### 3. Install postcss and autoprefixer
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+`npm i -D tailwindcss postcss-cli autoprefixer`
 
-### `npm test`
+#### 4. Install tailwind
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+`npm install -D tailwindcss@npm:@tailwindcss/postcss7-compat @tailwindcss/postcss7-compat postcss@^7 autoprefixer@^9 `
 
-### `npm run build`
+#### 5. Install and configure CRACO
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+`npm install @craco/craco`
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Once it is installed, change "scripts" in your "package.json".
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```
+    "scripts": {
+     "start": "craco start",
+     "build": "craco build",
+     "test": "craco test",
+      "eject": "react-scripts eject"
+    },
+```
 
-### `npm run eject`
+#### 6. Create craco config file
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+`touch craco.config.js`
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+In this file, write like this.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```
+module.exports = {
+  style: {
+    postcss: {
+      plugins: [
+        require('tailwindcss'),
+        require('autoprefixer'),
+      ],
+    },
+  },
+}
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+#### 7. Create tailwind config file
 
-## Learn More
+`npx tailwindcss init`
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+In this file, write like this.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```
+module.exports = {
+  purge: [],
+  darkMode: false, // or 'media' or 'class'
+  theme: {
+    extend: {},
+  },
+  variants: {
+    extend: {},
+  },
+  plugins: [],
+}
+```
 
-### Code Splitting
+If you want to remove unused styles, you can change it like this.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```
+  module.exports = {
+   purge: [],
+   purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
+    darkMode: false, // or 'media' or 'class'
+    theme: {
+      extend: {},
+    },
+    variants: {
+      extend: {},
+    },
+    plugins: [],
+  }
+```
 
-### Analyzing the Bundle Size
+#### 8. Modifiy index.css
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+In this file, write like this.
 
-### Making a Progressive Web App
+```
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Make sure "index.css" file is imported in "index.js".
 
-### Advanced Configuration
+#### 9. Run React app
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+`npm start`
 
-### Deployment
+#### Reference
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+[Install Tailwind CSS with Create React App](https://tailwindcss.com/docs/guides/create-react-app)
